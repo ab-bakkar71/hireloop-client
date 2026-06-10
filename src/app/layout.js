@@ -20,9 +20,14 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme="dark"
+      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body
+      suppressHydrationWarning
+      className="min-h-full flex flex-col">
+        {children}
+        </body>
     </html>
   );
 }
