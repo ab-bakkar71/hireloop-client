@@ -1,7 +1,12 @@
+import dns from 'node:dns'
+dns.setServers(['8.8.8.8','8.8.4.4'])
+
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +29,12 @@ export default function RootLayout({ children }) {
       lang="en"
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      suppressHydrationWarning
     >
       <body
-      suppressHydrationWarning
+      
       className="min-h-full flex flex-col">
+        <ToastContainer />
         <Navbar/>
         <main>
           {children}
