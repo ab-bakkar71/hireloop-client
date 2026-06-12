@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image'; 
 import { Button, Card } from "@heroui/react"; 
 import { Briefcase, Building2, Users2, Star, Search, MapPin } from "lucide-react";
+import { motion } from "motion/react"
 
 export default function StatsHero() {
   const stats = [

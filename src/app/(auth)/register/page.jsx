@@ -16,6 +16,7 @@ const RegisterPage = () => {
     // পাসওয়ার্ড ভিজিবিলিটি স্টেট
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+   
 
     const handelRegister = async (e) => {
         e.preventDefault();
@@ -23,12 +24,14 @@ const RegisterPage = () => {
 
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData.entries());
-        
+      
         if (userData.password !== userData.confirmPassword) {
             toast.error("Passwords do not match!");
             setIsLoading(false);
             return;
         }
+ 
+        
 
         // ২. authClient এর মাধ্যমে ডাটা পাঠানো
         const { data, error } = await signUp.email({
@@ -36,10 +39,10 @@ const RegisterPage = () => {
             email: userData.email,
             password: userData.password,
             image: userData.image,
-            metadata: {
-                role: userData.role,
-            }
+            role: userData.role
         });
+
+
 
         setIsLoading(false);
 
@@ -116,8 +119,8 @@ const RegisterPage = () => {
                             required
                         >
                             <option value="" disabled className="bg-zinc-950 text-zinc-600">Select your role</option>
-                            <option value="Job Seeker" className="bg-zinc-950 text-white">Job Seeker (Looking for jobs)</option>
-                            <option value="Employer" className="bg-zinc-950 text-white">Employer (Hiring talent)</option>
+                            <option value="Seeker" className="bg-zinc-950 text-white">Job Seeker (Looking for jobs)</option>
+                            <option value="Recruiter" className="bg-zinc-950 text-white">Recruiter (Hiring talent)</option>
                         </select>
                     </div>
 

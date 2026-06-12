@@ -33,7 +33,7 @@ const SignInPage = () => {
             toast.error(error.message || "Invalid email or password");
         } else {
             toast.success('Welcome back! Login successful ✅');
-            router.push("/dashboard"); // আপনার কাঙ্ক্ষিত ড্যাশবোর্ড বা হোম রুট পাথ দিন
+            router.push("/dashboard"); 
         }
     }
 
