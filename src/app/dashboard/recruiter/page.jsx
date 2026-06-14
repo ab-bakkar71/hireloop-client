@@ -14,7 +14,7 @@ const recruiterPage = () => {
     return (
         <section className='px-12 py-8'>
             <div className='text-2xl'>
-                Welcome Back, <span className='font-bold'>{user.name}</span>
+                Welcome Back, <span className='font-bold'>{user?.name}</span>
                 <DashboardStats/>
             </div>
         </section>

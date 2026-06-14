@@ -20,6 +20,7 @@ import {
 } from '@gravity-ui/icons';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { createJob } from '@/lib/actions/job';
 
 // 🛠️ FIX 1: কম্পোনেন্টের নাম বড় হাতের অক্ষরে (Capitalized) করা হয়েছে
 export default function NewJobPage() {
@@ -69,20 +70,21 @@ export default function NewJobPage() {
                 benefits: userData.benefits || ""
             },
             companyId: companyInfo.id,
+            companyName:companyInfo.name,
             status: "active",
             isPubliclyVisible: true
         };
+        const res = await createJob(jobPayload);
 
-        try {
-            console.log("Submitting Payload:", jobPayload);
-            await new Promise(resolve => setTimeout(resolve, 1200));
+        if(res.insertedId){
             toast.success("Job post is now live and publicly visible! 🚀");
             router.push("/dashboard/recruiter/jobs");
-        } catch (error) {
-            toast.error("An error occurred. Please try again.");
-        } finally {
-            setIsLoading(false);
         }
+        else if(res.error){
+            toast.error("An error occurred. Please try again.");
+        }
+        setIsLoading(false);
+
     };
 
     return (
